@@ -1,78 +1,45 @@
-from pydantic import BaseModel,validator
+from pydantic import BaseModel, validator
+import datetime
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
-from core import validaciones
+from app.core import validaciones
 
 
-class BASE_MODEL_USUARIO():
+class BASE_MODEL_USUARIO:
     __tablename__ = "users"
-    id_usuario = Column(Integer, primary_key=True)
-    clave = Column(str)
-    nombre_usuarios = Column(str)
-    nombre = Column(str)
-    apellidos = Column(str)
-    correo = Column(str)
-    correo_alt = Column(str)
-    password = Column(str)
-    FA = Column(str)
-    frase_recuperacion = Column(str)
-    sesion_activa = Column(int)
-    activo = Column(int)
-    ultima_actividad = Column(datetime.datetime)
-    create_at = Column(datetime.datetime)
-    update_at = Column(datetime.datetime)
+    Column('id_usuario',Integer, primary_key=True)
+    Column('clave',text)
+    Column('nombre_usuarios',text)
+    Column('nombre',text)
+    Column('apellidos',text)
+    Column('correo',text)
+    Column('correo_alt',text)
+    Column('password',text)
+    Column('FA',text)
+    Column('frase_recuperacion',text)
+    Column('sesion_activa',int)
+    Column('activo',int)
+    Column('ultima_actividad',datetime.datetime)
+    Column('create_at',datetime.datetime)
+    Column('update_at',datetime.datetime)
     pass
 
 
-class MODEL_USUARIO(BaseModel,validaciones):
-    id_usuario: int
-    clave: str
-    nombre_usuario: str
-    nombre: str
-    apellidos: str
-    correo: str
-    correo_alt: str
-    password: str
-    FA: str
-    frase_recuperacion: str
-    sesion_activa: int
-    activo: int
-    ultima_actividad: Optional[datetime] = None
-    create_at: datetime.datetime
-    update_at: Optional[datetime] = None
-
-    @validator(clave)
-    _normalize_clave = validator(
-        'clave', allow_reuse=true)(self.validar_str)
-
-    @validator(nombre_usuarios)
-    _normalize_nombre_usuarios = validator(
-        'nombre_usuarios', allow_reuse=true)(self.validar_str)
-
-    @validator(nombre)
-    _normalize_nombre = validator(
-        'nombre', allow_reuse=true)(self.validar_str)
-
-    @validator(apellidos)
-    _normalize_apellidos = validator(
-        'apellidos', allow_reuse=true)(self.validar_str)
-
-    @validator(correo)
-    _normalize_correo = validator(
-        'correo', allow_reuse=true)(self.validar_str)
-
-    @validator(correo_alt)
-    _normalize_correo_alt = validator(
-        'correo_alt', allow_reuse=true)(self.validar_str)
-
-    @validator(password)
-    _normalize_password = validator(
-        'password', allow_reuse=true)(self.validar_str)
-
-    @validator(FA)
-    _normalize_FA = validator('FA', allow_reuse=true)(self.validar_str)
-
-    @validator(frase_recuperacion)
-    _normalize_frase_recuperacion = validator(
-        'frase_recuperacion', allow_reuse=true)(self.validar_str)
-    pass
+class MODEL_USUARIO(BaseModel):
+    
+    id_usuario: int= None
+    clave: str= None
+    nombre_usuario: str= None
+    nombre: str= None
+    apellidos: str= None
+    correo: str= None
+    correo_alt: str= None
+    password: str= None
+    FA: str= None
+    frase_recuperacion: str= None
+    sesion_activa: int= None
+    activo: int= None
+    ultima_actividad: datetime.datetime = None
+    create_at: datetime.datetime = None
+    update_at: datetime.datetime = None
+    

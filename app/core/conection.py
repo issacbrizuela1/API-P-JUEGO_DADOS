@@ -3,8 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
-class CONECTIONPYSQL(pymysql):
-
+class CONECTIONPYSQL:
+    
     host = 'localhost'
     user = ''
     password = ''
@@ -22,22 +22,22 @@ class CONECTIONPYSQL(pymysql):
 
     # Connect to the database
 
-    def query(self, query):
+    def query(self, query,values):
         db = self.connection.cursor()
         query = query
-        data = db.execute(query)
+        values=values
+        data = db.execute(query,values)
         db.commit()
         return data
 
-
 class ALCHEMYCONECTION:
-    DATABASE_URL = "mysql+mysqlconnector://root@localhost:3306/api_dados"
+    # DATABASE_URL = "mysql+mysqlconnector://root@localhost:3306/api_dados"
 
-    engine = create_engine(DATABASE_URL)
+    # engine = create_engine(DATABASE_URL)
 
-    SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
+    # SessionLocal = sessionmaker(autocommit=False,autoflush=False,bind=engine)
 
-    Base = declarative_base()
+    # Base = declarative_base()
 
     """
         with connection:

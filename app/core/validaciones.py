@@ -1,10 +1,13 @@
-from pydantic import validator
 
-class validaciones(validator):
 
-    patrones=['/^([aA-zZñÑáÁéÉíÍóÓúÚ@\!\#\&\.\-\_\s\d])+$/i']
+class validaciones():
 
-    @validator
+    imput:any
+    patrones={
+        'parrafos': "/^([aA-zZñÑáÁéÉíÍóÓúÚ@\!\#\&\.\-\_\s\d])+$/i",
+        'textoslargos': '/([aA-zZñÑáÁéÉíÍóÓúÚ@\!\#\&\.\-\_\s\d\n\,])+/i'
+        }
+
     def validar_str(imput:str,pre=True, always=True)->str:
         result=re.math(self.patrones[0],imput)
         if(result==true):
