@@ -1,4 +1,4 @@
-from pydantic import BaseModel, validator
+from pydantic import BaseModel, validator,root_validator
 import datetime
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
@@ -43,3 +43,11 @@ class MODEL_USUARIO(BaseModel):
     create_at: datetime.datetime = None
     update_at: datetime.datetime = None
     
+    #region VALIDAMOS LOS STRINGS
+
+    @root_validator
+    def validar(cls,v):
+        return validaciones.validaciones.validar_str(v)
+    
+    
+    #endregion
