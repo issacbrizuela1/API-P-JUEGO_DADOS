@@ -21,9 +21,14 @@ def ADD(values:MODEL_USUARIO):
     endpoint=END_USUARIO
     response=endpoint.add(endpoint,data=values)
     return response
+    
 @app.get("/GETALL",tags=['user'],description="mostrar todos los usuarios")
 def GETALL():
     return END_USUARIO.getAll(END_USUARIO)
+
+@app.put("/UPDATE",tags=['user'],description="Editar usuarios")
+def UPDATE(values:MODEL_USUARIO):
+    return END_USUARIO.update(END_USUARIO,values)
 
 if __name__ == '__main__':
     #uvicorn main:app --reload

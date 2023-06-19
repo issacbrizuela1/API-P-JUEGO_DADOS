@@ -14,8 +14,13 @@ class END_USUARIO:
         return response
     
     def getAll(self):
-        query="select * from usuario"
-        response=self.conn.select(self=self.conn,query=query)
+        response=self.conn.select(self.conn,'select * from usuario')
         return response
     
+    def update(self,data: MODEL_USUARIO,**camposAeditar):
+        primerapartedelaconsulta="update usuario set "
+        return data.__dict__
+
+
+
 
