@@ -1,4 +1,4 @@
-
+from pydantic import BaseModel, validator,root_validator
 import re
 
 class validaciones():
@@ -9,12 +9,15 @@ class validaciones():
         'textoslargos': '/([aA-zZñÑáÁéÉíÍóÓúÚ@\!\#\&\.\-\_\s\d\n\,])+/i'
         }
 
-    def validar_str(self,input:str):
-        for datos in input:
-            result=re.math(self.patrones[0],datos)
-            if(datos.len>100):
-                return f"El input {datos} debe contener menos de 100 caracteres"
+    def validar_str(self,input:BaseModel,fieldsToValidate):#fieldsToevaluate
+        FIELDS=input
+        #getattr(FIELDS, datos)
+        for datos in fieldsToValidate:
+            result=re.match(self.patrones['parrafos'], FIELDS[datos])
+            if(FIELDS[datos]=="" or FIELDS[datos]==None):
+                raise ValueError(f"El input {datos} es requerido") 
+            if(len(FIELDS[datos])>100):
+                raise ValueError(f"El input {datos} debe contener menos de 100 caracteres")
             if(result==False):
-                return f"El input {datos} debe contener los caracteres validos alphanumericos y (@,!,#,&,.,-,_)"
-        return input
-                
+                raise ValueError(f"El input {datos} debe contener los caracteres validos alphanumericos y (@,!,#,&,.,-,_)")
+            return input
