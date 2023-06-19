@@ -14,13 +14,15 @@ class CONECTIONPYSQL:
         try:
             if(values!=None):
                 self.connection.connect()
-                result=self.cursor.fetchall(query,values)
+                self.cursor.execute(query,values)
+                result=self.cursor.fetchall()
                 self.connection.commit()
                 self.connection.close()
                 return result
             else:
                 self.connection.connect()
-                result=self.cursor.fetchall(query)
+                self.cursor.execute(query)
+                result=self.cursor.fetchall()
                 self.connection.commit()
                 self.connection.close()
                 return result
@@ -28,6 +30,23 @@ class CONECTIONPYSQL:
             return e
 
     def insert(self,query:str,values=None):
+        try:
+            if(values!=None):
+                self.connection.connect()
+                result=self.cursor.execute(query,values)
+                self.connection.commit()
+                self.connection.close()
+                return result
+            else:
+                self.connection.connect()
+                result=self.cursor.execute(query)
+                self.connection.commit()
+                self.connection.close()
+                return result
+        except Exception as e:
+            return e
+
+    def update(self,query:str,values=None):
         try:
             if(values!=None):
                 self.connection.connect()
