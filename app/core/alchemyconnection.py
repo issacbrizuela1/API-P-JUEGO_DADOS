@@ -29,7 +29,7 @@ class ALCHCONN(SQLAlchemy):
 
 
 
-
+"""
 # Configurar la conexión a la base de datos
 engine = create_engine('mysql://root:@servidor/api_pruebas', echo=True)
 
@@ -71,4 +71,4 @@ session.commit()
 # Eliminar un producto
 producto_a_eliminar = session.query(Producto).filter_by(nombre='Producto 1').first()
 session.delete(producto_a_eliminar)
-session.commit()
+session.commit()"""

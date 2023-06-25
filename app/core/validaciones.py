@@ -11,7 +11,6 @@ class validaciones():
 
     def validar_str(self,input:BaseModel,fieldsToValidate):#fieldsToevaluate
         FIELDS=input
-        #getattr(FIELDS, datos)
         for datos in fieldsToValidate:
             result=re.match(self.patrones['parrafos'], FIELDS[datos])
             if(FIELDS[datos]=="" or FIELDS[datos]==None):

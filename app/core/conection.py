@@ -27,7 +27,7 @@ class CONECTIONPYSQL:
                 self.connection.close()
                 return result
         except Exception as e:
-            return e
+            return str(e)
 
     def insert(self,query:str,values=None):
         try:
@@ -44,29 +44,20 @@ class CONECTIONPYSQL:
                 self.connection.close()
                 return result
         except Exception as e:
-            return e
+            return str(e)
 
-    def update(self,query:str,values=None):
+    def update(self,query:str):
         try:
-            if(values!=None):
-                self.connection.connect()
-                result=self.cursor.execute(query,values)
-                self.connection.commit()
-                self.connection.close()
-                return result
-            else:
-                self.connection.connect()
-                result=self.cursor.execute(query)
-                self.connection.commit()
-                self.connection.close()
-                return result
+            self.connection.connect()
+            result=self.cursor.execute(query)
+            self.connection.commit()
+            self.connection.close()
+            return result
         except Exception as e:
-            return e
+            return str(e)
 
     def __del__(self):
         self.connection.close()
-
-
 
 
 
