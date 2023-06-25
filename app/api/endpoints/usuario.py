@@ -17,10 +17,14 @@ class END_USUARIO:
         response=self.conn.select(self.conn,'select * from usuario')
         return response
     
-    def update(self,data: MODEL_USUARIO,**camposAeditar):
-        primerapartedelaconsulta="update usuario set "
-        return data.__dict__
-
-
-
-
+    def update(self,diccionario:MODEL_USUARIO, campo_id, valor_id, tabla):
+        campos_valores=[]
+        DATOS=diccionario
+        for campo, valor in DATOS:
+            if valor==None :''
+            else: campos_valores.extend([f"{campo}={valor}"])
+        set_parte = ", ".join(campos_valores)
+        consulta = f"UPDATE {tabla} SET {set_parte} WHERE {campo_id}='{valor_id}'"
+        print(consulta)
+        RESPONSE=self.conn.update(self.conn,consulta)
+        return RESPONSE

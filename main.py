@@ -27,8 +27,8 @@ def GETALL():
     return END_USUARIO.getAll(END_USUARIO)
 
 @app.put("/UPDATE",tags=['user'],description="Editar usuarios")
-def UPDATE(values:MODEL_USUARIO):
-    return END_USUARIO.update(END_USUARIO,values)
+def UPDATE(data: MODEL_USUARIO,id:str):
+    return END_USUARIO.update(END_USUARIO,data,'clave',id,'usuario')
 
 if __name__ == '__main__':
     #uvicorn main:app --reload
