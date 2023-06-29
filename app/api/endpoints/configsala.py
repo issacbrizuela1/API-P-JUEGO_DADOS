@@ -17,7 +17,7 @@ class END_TIPO_JUEGO:
         response = self.conn.select(self.conn, 'select * from tipo_juego')
         return response
 
-    def update(self, diccionario: MODEL_USUARIO, campo_id, valor_id, tabla):
+    def update(self, diccionario: MODEL_TIPOJUEGO, campo_id, valor_id, tabla):
         campos_valores = []
         DATOS = diccionario
         for campo, valor in DATOS:
