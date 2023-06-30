@@ -5,7 +5,8 @@ from app.models.MODEL_USUARIO import MODEL_USUARIO
 from fastapi import FastAPI
 
 app = FastAPI()
-
+app.title = "JUEGO DADOS"
+app.version = "0.0.0.1"
 
 @app.get("/")
 def read_root():
